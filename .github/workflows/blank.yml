@@ -1,0 +1,34 @@
+name:  Workflow with Standard Runners
+on: 
+  workflow_dispatch:
+jobs:
+  jobOnUbuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate logs for 2 minutes on hosted ubuntu runner
+      run: |
+        for i in {1..120}
+        do
+          echo "Ubuntu - Log message number $i"
+          sleep 1
+        done
+  jobOnWindows:
+    runs-on: windows-latest
+    steps:
+    - name: Generate logs for 2 minutes on hosted windows runner
+      run: |
+          For ($i=1; $i -le 120; $i++) {
+            Write-Output "Windows - Log message number $i"
+            Start-Sleep -s 1
+          }
+      shell: pwsh
+  jobOnMacOS:
+    runs-on: macos-latest
+    steps:
+    - name: Generate logs for 2 minutes on hosted macos runners
+      run: |
+        for i in {1..120}
+        do
+          echo "MacOS - Log message number $i"
+          sleep 1
+        done
